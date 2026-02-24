@@ -59,7 +59,7 @@ class TaskManager:
                 status = "[ ]"
             print(f"{i}. {task['title']} - Completed: {status} - Created: {task['created_at']}")
 
-    def completed_task(self):
+    def completed_tasks(self):
         if not self.tasks:
             print("No tasks to amend.")
             return   
@@ -119,33 +119,28 @@ class TaskManager:
 
 manager = TaskManager("tasks.json")
 
+actions = {
+    "1" : manager.add_task,
+    "2" : manager.view_tasks,
+    "3" : manager.completed_tasks,
+    "4" : manager.delete_task,
+    "5" : manager.clear_completed
+}
+
 print("Welcome to your Task List Program!")
 
 while True:
     show_menu()
     choice = input("Please input your selection: ")
-    
-    if choice == "1":
-        manager.add_task()
 
-    elif choice == "2":
-        manager.view_tasks()
-
-
-    elif choice == "3":
-        manager.completed_task()
-
-    elif choice == "4":
-        manager.delete_task()
-
-    elif choice == "5":
-        manager.clear_completed()
-
-    elif choice == "6":
+    if choice == "6":
         break
 
+    action = actions.get(choice)
+
+    if action:
+        action()
     else:
         print("Invalid Choice!")
-    
-    if choice != 6:
-        pause()
+        
+    pause()
