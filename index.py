@@ -119,34 +119,33 @@ class TaskManager:
 
 manager = TaskManager("tasks.json")
 
+print("Welcome to your Task List Program!")
+
 while True:
-    print("Welcome to your Task List Program!")
     show_menu()
     choice = input("Please input your selection: ")
     
     if choice == "1":
         manager.add_task()
-        pause()
 
     elif choice == "2":
         manager.view_tasks()
-        pause()
+
 
     elif choice == "3":
         manager.completed_task()
-        pause()
 
     elif choice == "4":
         manager.delete_task()
-        pause()
 
     elif choice == "5":
         manager.clear_completed()
-        pause()
 
     elif choice == "6":
         break
 
     else:
         print("Invalid Choice!")
+    
+    if choice != 6:
         pause()
