@@ -11,6 +11,9 @@ def show_menu():
     print("\n5. Clear completed tasks from list")
     print("\n6. Quit")
 
+def pause():
+    input("Press enter to return to menu...")
+
 class TaskManager:
     def __init__(self, filename):
             self.filename = filename
@@ -41,7 +44,9 @@ class TaskManager:
         self.tasks.append(task)
         self.save_tasks()
         print("Task Added!")
-    
+        self.view_tasks()
+        
+
     def view_tasks(self):
         if not self.tasks:
             print("No tasks to view.")
@@ -57,28 +62,26 @@ class TaskManager:
     def completed_task(self):
         if not self.tasks:
             print("No tasks to amend.")
-            return
-
+            return   
         try:
             self.view_tasks()
             completion_value = int(input("Which task would you like to mark as completed? "))
-
             if 1 <= completion_value <= len(self.tasks):
                 if self.tasks[completion_value - 1]["completed"]:
-                    print("Task is already completed!")
+                    print("Task is already completed!")         
                 else:
                     self.tasks[completion_value - 1]["completed"] = True
                     self.save_tasks()
                     print("Task is now marked as completed!")
                     self.view_tasks()
             else:
-                print("Invalid task number.")
+                print("Invalid task number.")     
         except ValueError:
             print("Please enter a valid number.")    
 
     def delete_task(self):
         if not self.tasks:
-            print("No tasks to amend.")
+            print("No tasks to amend.")   
             return
         self.view_tasks()
         try:
@@ -90,13 +93,13 @@ class TaskManager:
                 print(f"Deleted task: {removed['title']}")
                 self.view_tasks()
             else:
-                print("Invalid choice!")
+                print("Invalid choice!")               
         except ValueError:
             print("Please enter a valid number.") 
 
     def clear_completed(self):
         if not self.tasks:
-            print("No tasks to amend.")
+            print("No tasks to amend.")           
             return
         self.view_tasks()
         clear_choice = input('"If you would like to clear the completed tasks, please input the letter "y":')
@@ -109,9 +112,10 @@ class TaskManager:
                 print(f"{removed_count} completed tasks have been removed from the list.\nHere is the updated list:")
                 self.view_tasks()
             else:
-                print("No completed tasks to clear.")
+                print("No completed tasks to clear.")                
         else:
-            print("List has not been cleared.")  
+            print("List has not been cleared.")
+              
 
 manager = TaskManager("tasks.json")
 
@@ -122,21 +126,27 @@ while True:
     
     if choice == "1":
         manager.add_task()
+        pause()
 
     elif choice == "2":
         manager.view_tasks()
+        pause()
 
     elif choice == "3":
         manager.completed_task()
+        pause()
 
     elif choice == "4":
         manager.delete_task()
+        pause()
 
     elif choice == "5":
         manager.clear_completed()
+        pause()
 
     elif choice == "6":
         break
 
     else:
         print("Invalid Choice!")
+        pause()
