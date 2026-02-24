@@ -59,7 +59,7 @@ class TaskManager:
                 status = "[ ]"
             print(f"{i}. {task['title']} - Completed: {status} - Created: {task['created_at']}")
 
-    def completed_tasks(self):
+    def completed_task(self):
         if not self.tasks:
             print("No tasks to amend.")
             return   
@@ -122,7 +122,7 @@ manager = TaskManager("tasks.json")
 actions = {
     "1" : manager.add_task,
     "2" : manager.view_tasks,
-    "3" : manager.completed_tasks,
+    "3" : manager.completed_task,
     "4" : manager.delete_task,
     "5" : manager.clear_completed
 }
