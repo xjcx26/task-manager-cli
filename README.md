@@ -2,7 +2,7 @@
 
 A command-line task manager built in Python.
 
-This project allows users to manage tasks directly from the terminal using a simple menu-driven interface.
+This project allows users to manage tasks through a structured CLI interface with persistent JSON storage.
 
 ## Features
 
@@ -12,13 +12,43 @@ This project allows users to manage tasks directly from the terminal using a sim
 - Delete tasks
 - Clear completed tasks
 - Persistent storage using JSON
+- Object-oriented design
+- Dictionary-based dispatch pattern for menu handling
+- Separation between business and interface layer
+
+## Architecture
+
+The project is structured with separation of concerns.
+
+### TaskManager Class
+
+Handles:
+
+- Task storage
+- Business logic
+- JSON persistence
+- State management
+
+### Interface Layer
+
+Handles:
+
+- User input
+- Validation
+- CLI display
+- Command dispatching
+
+### Dispatch Pattern
+
+A dictionary-based system maps menu options to interface handlers, removing long conditional chains and improving scalability.
 
 ## How It Works
 
 - Tasks are stored in a `tasks.json` file.
 - Data is loaded when the program starts.
 - Changes are saved automatically after modifications.
-- The application runs in a continuous loop until the user exits.
+- The CLI loop routes user input through the dispatch dictionary.
+- Interface handlers collect user input and call business logic methods.
 
 ## Technologies Used
 
@@ -31,15 +61,16 @@ This project allows users to manage tasks directly from the terminal using a sim
 This project was built to practice:
 
 - CRUD operations (Create, Read, Update, Delete)
-- Working with lists and dictionaries
-- File handling and JSON serialization
-- Input validation
-- Control flow design
-- Structuring a CLI application
+- Object-Oriented Programming (OOP)
+- Separation of concerns
+- Dictionary-based command dispatching
+- Refactoring from procedural to structured architecture
+- Clean version control practices
 
 ## Future Improvements
 
-- Refactor into object-oriented structure
-- Build a web-based version
+- Fully remove print statements from business layer
 - Add due dates and priority levels
-- Connect to a database instead of JSON
+- Add search functionality
+- Replace JSON storage with database backend
+- Build a web-based version
